@@ -4,62 +4,13 @@ An end-to-end computer vision project for classifying magnetic tile surface imag
 
 ---
 
-## 1. Problem Framing
+##  Problem Framing
 
-Magnetic tiles are inspected for surface defects as part of industrial quality control. Missing a defect (false negative) lets a faulty part into production; flagging a good part (false positive) wastes inspection effort. This asymmetry motivates evaluating the model with **macro-F1 and per-class recall**, not just overall accuracy — a model that scores 90% accuracy by always predicting the majority `Free` class would be useless in practice.
-
-**Task framing:** image classification (not segmentation). Segmentation was explicitly flagged in the assessment as optional/higher-difficulty; given the 3-day constraint and a ~1,300-image dataset, a classification pipeline executed thoroughly (clean data handling, two well-justified models, real error analysis, a working inference API) scores higher against the stated rubric than a segmentation attempt executed shallowly. This is a direct application of the assessment's own stated philosophy: *"a simpler model with strong analysis and clean engineering will score higher than a complex model trained blindly."*
+Magnetic tile defect detection is a real-world industrial quality control problem where the goal is to classify tiles as defect-free or belonging to a specific defect category. Since missing a defect can impact product quality, evaluation focuses on metrics such as macro-F1 and recall rather than accuracy alone. I chose image classification because it aligns well with the dataset, can be implemented effectively within the assessment timeline, and allows greater focus on data analysis, model comparison, error analysis, and deployment readiness.
 
 ---
 
-## 2. Dataset
-
-**[Magnetic Tile Surface Defects Dataset](https://www.kaggle.com/datasets/alex000kim/magnetic-tile-surface-defects)** (Kaggle / originally from Huang et al., "Surface Defect Saliency of Magnetic Tile").
-
-**Why this dataset, compared to alternatives considered:**
-
-| Dataset | Task | Size | Why chosen / not chosen |
-|---|---|---|---|
-| **Magnetic Tile Surface Defects** (chosen) | Classification | ~1,344 images, 6 classes | Real industrial defect-detection use case; genuine, non-artificial class imbalance; small enough to train fully on a CPU or Colab free-tier GPU within the 3-day window |
-| Severstal Steel Defect Detection | Segmentation | ~12,600 images | Well-known, but its size and RLE-mask parsing overhead make a thorough job in 3 days a stretch relative to the achievable score ceiling |
-| NEU Surface Defect Database | Classification | 1,800 images, 6 classes | Very clean and nearly class-balanced — this actually works against the assessment, since it gives little material for the required imbalance-handling and error-analysis sections |
-
-**Dataset characteristics (see `notebooks/eda.ipynb` and `outputs/figures/class_distribution.png` after running the EDA script):**
-- 6 classes, meaningfully imbalanced (the `Free` class and a couple of defect types dominate; some defect types have far fewer samples).
-- Images are near-grayscale JPEGs with inconsistent resolutions and aspect ratios.
-- No image-level label noise was found during manual spot-checking, though some defects (e.g. faint blowholes) are visually subtle even to a human reviewer — this is called out explicitly in the error analysis.
-
-### Dataset Setup
-
-Download the dataset from Kaggle and extract it so the raw folder structure looks like:
-
-```
-data/raw/
-├── MT_Blowhole/Imgs/*.jpg
-├── MT_Break/Imgs/*.jpg
-├── MT_Crack/Imgs/*.jpg
-├── MT_Fray/Imgs/*.jpg
-├── MT_Uneven/Imgs/*.jpg
-└── MT_Free/Imgs/*.jpg
-```
-
-`src/data/dataset.py` also falls back to scanning the class folder directly (without an `Imgs` subfolder) if that's how your copy of the dataset is packaged, so minor re-packaging differences won't break the pipeline.
-
----
-
-## 3. Preprocessing & Augmentation
-
-- **Resize (not crop) to 224×224**: raw images have inconsistent aspect ratios; cropping risks cutting off defects near tile edges.
-- **ImageNet normalization**: required for the pretrained ResNet18 backbone; applied consistently to the baseline CNN too.
-- **Augmentation (train only)**: horizontal/vertical flip + ±15° rotation (defects have no canonical orientation on a tile) and mild brightness/contrast jitter (lighting varies across captures). Hue/saturation jitter is deliberately **not** used — the images are effectively grayscale, so color-space augmentation would add noise rather than useful invariance.
-
-## 4. Class Imbalance Handling
-
-Class-**weighted loss** (inverse-frequency weights via `sklearn.utils.class_weight.compute_class_weight`) is used instead of oversampling. With only ~1,300 images, oversampling minority classes risks the model memorizing duplicated images; weighted loss adjusts gradient contribution per class without duplicating data.
-
----
-
-## 5. Models
+##  Models
 
 | | Baseline CNN | ResNet18 (fine-tuned) |
 |---|---|---|
@@ -75,14 +26,14 @@ Class-**weighted loss** (inverse-frequency weights via `sklearn.utils.class_weig
 
 ---
 
-## 6. Evaluation Methodology
+## Evaluation Methodology
 
 - Stratified 70/15/15 train/val/test split (fixed seed, preserves class proportions in every split).
 - Primary metrics: **macro-F1** and **per-class precision/recall** (not raw accuracy), because of class imbalance.
 - Model selection during training uses **validation macro-F1** to choose the best checkpoint, not validation loss or accuracy.
 - Confusion matrix generated for the test set (`outputs/figures/<model>_confusion_matrix.png`).
 
-## 7. Error Analysis
+##  Error Analysis
 
 `src/evaluation/error_analysis.py` extracts every misclassified test image, visualizes them in a labeled grid, and tabulates the most frequent `true_class -> predicted_class` confusion pairs (`outputs/metrics/<model>_error_analysis.json`). This is what turns "the model is 91% accurate" into an actionable finding, e.g. identifying that a specific defect type is systematically confused with the defect-free class because it produces only a faint intensity change — which then directly motivates a concrete next step (e.g. targeted augmentation or a higher-resolution input crop for that class) rather than blind hyperparameter tweaking.
 
@@ -129,16 +80,9 @@ magnetic-tile-defect-classifier/
     └── test_inference.py
 ```
 
-**Engineering principles applied:**
-- Training, evaluation, and inference code are fully separated — `src/inference/predictor.py` only imports model architecture definitions, never the training loop.
-- Every path/hyperparameter lives in `config/config.yaml`, loaded through a single `src/config_loader.py`.
-- Structured logging to both console and file (`outputs/logs/`) throughout training, evaluation, and the API.
-- Reproducibility via a single global seed (`set_global_seed`) applied to Python, NumPy, and PyTorch RNGs.
-- `tests/test_inference.py` covers the inference pipeline end-to-end without requiring a real trained checkpoint (it builds a throwaway checkpoint on the fly), so it runs on any fresh clone.
-
 ---
 
-## 9. Setup
+##  Setup
 
 ```bash
 python -m venv venv
@@ -148,7 +92,7 @@ pip install -r requirements.txt
 
 Place the dataset under `data/raw/` as described in [Dataset Setup](#dataset-setup).
 
-## 10. Running the Pipeline
+##  Running the Pipeline
 
 ```bash
 # 1. (Optional) Regenerate EDA figures
