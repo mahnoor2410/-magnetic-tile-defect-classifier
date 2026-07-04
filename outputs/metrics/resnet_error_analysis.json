@@ -1,0 +1,198 @@
+{
+  "total_test_samples": 202,
+  "total_misclassified": 29,
+  "confusion_pairs": [
+    {
+      "true_class": "Free",
+      "predicted_class": "Break",
+      "count": 11
+    },
+    {
+      "true_class": "Break",
+      "predicted_class": "Free",
+      "count": 7
+    },
+    {
+      "true_class": "Blowhole",
+      "predicted_class": "Break",
+      "count": 3
+    },
+    {
+      "true_class": "Crack",
+      "predicted_class": "Break",
+      "count": 2
+    },
+    {
+      "true_class": "Uneven",
+      "predicted_class": "Free",
+      "count": 2
+    },
+    {
+      "true_class": "Blowhole",
+      "predicted_class": "Free",
+      "count": 1
+    },
+    {
+      "true_class": "Fray",
+      "predicted_class": "Free",
+      "count": 1
+    },
+    {
+      "true_class": "Blowhole",
+      "predicted_class": "Crack",
+      "count": 1
+    },
+    {
+      "true_class": "Crack",
+      "predicted_class": "Blowhole",
+      "count": 1
+    }
+  ],
+  "misclassified_samples": [
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Break/Imgs/exp4_num_271416.jpg",
+      "true_class": "Break",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp5_num_277059.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Blowhole/Imgs/exp3_num_346347.jpg",
+      "true_class": "Blowhole",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp4_num_2086.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp6_num_342992.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp5_num_174768.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Crack/Imgs/exp6_num_265737.jpg",
+      "true_class": "Crack",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp6_num_10280.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Break/Imgs/exp1_num_98080.jpg",
+      "true_class": "Break",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Blowhole/Imgs/exp6_num_9594.jpg",
+      "true_class": "Blowhole",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Blowhole/Imgs/exp5_num_346381.jpg",
+      "true_class": "Blowhole",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Break/Imgs/exp4_num_116999.jpg",
+      "true_class": "Break",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Break/Imgs/exp6_num_117060.jpg",
+      "true_class": "Break",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Uneven/Imgs/exp5_num_33487.jpg",
+      "true_class": "Uneven",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Break/Imgs/exp1_num_271361.jpg",
+      "true_class": "Break",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp3_num_2642.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Blowhole/Imgs/exp6_num_308130.jpg",
+      "true_class": "Blowhole",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Break/Imgs/exp3_num_320689.jpg",
+      "true_class": "Break",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp4_num_278605.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Uneven/Imgs/exp2_num_129056.jpg",
+      "true_class": "Uneven",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Fray/Imgs/exp0_num_797.jpg",
+      "true_class": "Fray",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp5_num_359512.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Blowhole/Imgs/exp3_num_9508.jpg",
+      "true_class": "Blowhole",
+      "predicted_class": "Crack"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp6_num_193234.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp6_num_2697.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Crack/Imgs/exp6_num_3279.jpg",
+      "true_class": "Crack",
+      "predicted_class": "Blowhole"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Break/Imgs/exp3_num_116981.jpg",
+      "true_class": "Break",
+      "predicted_class": "Free"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Free/Imgs/exp5_num_91072.jpg",
+      "true_class": "Free",
+      "predicted_class": "Break"
+    },
+    {
+      "image_path": "/content/magnetic-tile-defect-classifier/data/raw/MT_Crack/Imgs/exp1_num_276355.jpg",
+      "true_class": "Crack",
+      "predicted_class": "Break"
+    }
+  ]
+}

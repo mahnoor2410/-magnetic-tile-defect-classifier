@@ -1,0 +1,61 @@
+# =============================================================================
+# Central configuration for the Magnetic Tile Surface Defect Classifier
+# All paths are relative to the project root.
+# =============================================================================
+
+seed: 42
+
+data:
+  raw_dir: "data/raw"                # expected subfolders: MT_Blowhole, MT_Break, MT_Crack, MT_Fray, MT_Uneven, MT_Free
+  image_extension: ".jpg"
+  image_size: 224
+  batch_size: 32
+  num_workers: 2
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+
+classes:
+  - "Blowhole"
+  - "Break"
+  - "Crack"
+  - "Fray"
+  - "Uneven"
+  - "Free"
+
+# Folder-name prefix used by the original Kaggle dataset layout (MT_<ClassName>)
+class_folder_prefix: "MT_"
+
+training:
+  baseline:
+    epochs: 25
+    lr: 0.001
+    weight_decay: 0.0001
+    optimizer: "adam"
+  resnet:
+    epochs: 15
+    lr: 0.0001
+    weight_decay: 0.0001
+    optimizer: "adam"
+    freeze_backbone_epochs: 5   # number of initial epochs with backbone frozen
+
+model:
+  active_model: "baseline"        # "baseline" or "resnet"
+  checkpoint_dir: "outputs/checkpoints"
+  baseline_checkpoint_name: "baseline_best.pth"
+  resnet_checkpoint_name: "resnet_best.pth"
+
+evaluation:
+  metrics_dir: "outputs/metrics"
+  figures_dir: "outputs/figures"
+  num_error_samples: 16
+
+logging:
+  log_dir: "outputs/logs"
+  level: "INFO"
+
+inference:
+  active_model: "resnet"        # which architecture the checkpoint below belongs to
+  checkpoint_path: "outputs/checkpoints/resnet_best.pth"
+  device: "cpu"
+  image_size: 224

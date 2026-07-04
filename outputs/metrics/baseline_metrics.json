@@ -1,0 +1,42 @@
+{
+  "accuracy": 0.47029702970297027,
+  "macro_f1": 0.17304241545510113,
+  "per_class": {
+    "Blowhole": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 18.0
+    },
+    "Break": {
+      "precision": 0.1111111111111111,
+      "recall": 0.08333333333333333,
+      "f1-score": 0.09523809523809523,
+      "support": 12.0
+    },
+    "Crack": {
+      "precision": 0.05263157894736842,
+      "recall": 0.2222222222222222,
+      "f1-score": 0.0851063829787234,
+      "support": 9.0
+    },
+    "Fray": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 5.0
+    },
+    "Uneven": {
+      "precision": 0.13157894736842105,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.18867924528301888,
+      "support": 15.0
+    },
+    "Free": {
+      "precision": 0.7435897435897436,
+      "recall": 0.6083916083916084,
+      "f1-score": 0.6692307692307692,
+      "support": 143.0
+    }
+  }
+}

@@ -1,0 +1,19 @@
+venv/
+env/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Dataset (download separately, see README > Dataset Setup)
+data/raw/*
+!data/raw/.gitkeep
+
+# Trained model weights (large binaries — host externally if needed, see README)
+outputs/checkpoints/*.pth
+
+# Logs are regenerated on every run
+outputs/logs/*.log
+
+.DS_Store
+.vscode/
+.idea/
