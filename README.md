@@ -48,10 +48,6 @@ data/raw/
 | Epochs | 25 | 15 |
 | Why chosen | Small, fast, well-understood as a sanity-check model | ResNet18 was chosen because it offers strong performance while remaining computationally efficient. Its size is appropriate for the dataset and available resources, making it a practical choice for both training and inference. |
 
-**Basic hyperparameter tuning performed:** the freeze/unfreeze epoch split was chosen by comparing validation macro-F1 across a couple of schedules rather than fine-tuning end-to-end from epoch 1. All runs are logged and reproducible — see `outputs/logs/`.
-
-**If more compute were available:** I would (1) try ResNet50/EfficientNet-B0 as a capacity upgrade, (2) run a proper grid/Bayesian search over LR and weight decay instead of a small manual comparison, (3) generate synthetic defect augmentations targeting the minority classes rather than relying solely on loss weighting, and (4) use k-fold cross-validation for a less split-dependent estimate of generalization given the dataset's small size.
-
 ---
 
 ## Evaluation Methodology
