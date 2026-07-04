@@ -46,7 +46,7 @@ data/raw/
 | Purpose | Reference point — quantifies the actual lift from transfer learning on this dataset | Primary model |
 | Fine-tuning strategy | N/A (trained end-to-end from random init) | Staged: first 5 epochs train only the new FC head (backbone frozen), remaining 10 epochs unfreeze `layer4` + head at a low LR |
 | Epochs | 25 | 15 |
-| Why chosen | Small, fast, well-understood as a sanity-check model | ResNet18 (not ResNet50/deeper) for compute-awareness: fast to fine-tune, fast enough for CPU inference in production, and appropriately sized for a ~1,300-image dataset where a deeper network would overfit more easily |
+| Why chosen | Small, fast, well-understood as a sanity-check model | ResNet18 was chosen because it offers strong performance while remaining computationally efficient. Its size is appropriate for the dataset and available resources, making it a practical choice for both training and inference. |
 
 **Basic hyperparameter tuning performed:** the freeze/unfreeze epoch split was chosen by comparing validation macro-F1 across a couple of schedules rather than fine-tuning end-to-end from epoch 1. All runs are logged and reproducible — see `outputs/logs/`.
 
